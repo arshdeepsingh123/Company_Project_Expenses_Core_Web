@@ -1,0 +1,42 @@
+﻿@page
+@model Company_Project_Expenses_Core_Web.Pages.ProjectManagers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Project Managers</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Add Project Manager</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectManager[0].ProjectManagerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectManager[0].Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ProjectManager) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

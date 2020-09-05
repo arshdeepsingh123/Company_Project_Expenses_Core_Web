@@ -1,0 +1,60 @@
+﻿@page
+@model Company_Project_Expenses_Core_Web.Pages.Expenses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Expenses</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Add Expenses</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense[0].Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense[0].Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense[0].ProjectManager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense[0].ExpenseDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expense[0].SpentAmount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Expense) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.InfoURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectManager.ProjectManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpenseDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpentAmount)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
